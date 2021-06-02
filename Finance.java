@@ -7,7 +7,7 @@ public class Finance { //1.3 User Define Class
 	DecimalFormat df2 = new DecimalFormat("0.00");
 	//1.2 Pre-Define Class
 	double sponsorFees;
-	double eventFees; //The eventFees is depends on the choice of the participant
+	double eventFees; 
 	int totalNumParticipant;
 	double totalDonation, netIncome,adExpenses, extraExpenses;
 	
@@ -19,14 +19,14 @@ public class Finance { //1.3 User Define Class
 	
 	public Finance(double sponsorFees) {  //1.4 Constructor with 1 argument
 		this.sponsorFees = sponsorFees;
-		System.out.println("Total sponsor: RM " + df2.format(this.sponsorFees));
+		System.out.println("Total sponsor    : RM " + df2.format(this.sponsorFees));
 	}
 	
 	public Finance(double eventFees, int totalNumParticipant) {  //1.4 Constructor with 2 arguments
 		this.eventFees = eventFees;
 		this.totalNumParticipant = totalNumParticipant;
 		System.out.println("The Number of Partipant We Have Now: " + totalNumParticipant + " person registered");   
-		System.out.println("\nTotal Event Fees: RM " + df2.format(calTotalEventFees()));
+		System.out.println("\nTotal Event Fees : RM " + df2.format(calTotalEventFees()));
 	}
 	//Calculation 
  	public double calTotalExpenses(){
