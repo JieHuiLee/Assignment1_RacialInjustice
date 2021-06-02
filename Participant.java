@@ -1,6 +1,7 @@
 package Assignment1;
 
 import java.util.Scanner; 
+import java.text.DecimalFormat;
 
 public class Participant { //1.3 User Define Class
 	DecimalFormat df2 = new DecimalFormat("0.00");
@@ -135,7 +136,7 @@ public class Participant { //1.3 User Define Class
 				System.out.println("Yes. Please click to complete donation!");
 			else
 				calDonationFee();
-		    break;
+		   	 break;
 		case 4: //Online Banking
 			System.out.println("\nBank Name:");
 			for(int i = 0; i < bankNameList.length; i++) {
