@@ -1,7 +1,6 @@
 package Assignment1;
 
 import java.util.Scanner; 
-import java.text.DecimalFormat;
 
 public class Participant { //1.3 User Define Class
 	DecimalFormat df2 = new DecimalFormat("0.00");
@@ -10,18 +9,17 @@ public class Participant { //1.3 User Define Class
 	String name, email; 
 	int age, race, state, contactNo;
 	char gender; //(F/M)
-	boolean malaysian = true;
-	int participate = 1;           //TAKE NOTE!!
+	boolean malaysian , haveAcc = true;
 	double donateAmount, donationFee;
 	char donateTimes;
 	int donateMethod;
-	int bankName, bankAccNo;
-	String tacNo;
+	int securityCode,bankName, bankAccNo;
+	String cardType,creditCardNo,expires,tacNo;
 
 	String stateOfMalaysia[] = {"Johor","Kedah", "Kelantan", "Melaka","Negeri Sembilan", "Pahang", 
-            					"Perak", "Perlis","Penang", "Selangor","Terengganu","Sabah", "Sarawak"};
+            			    "Perak", "Perlis","Penang", "Selangor","Terengganu","Sabah", "Sarawak"};
 	String bankNameList [] = {"Maybank","CIMB", "Public Bank Bhd", "RHB Bank", "Hong Leong Bank",
-            				  "AmBank", "UOB Bank", "Bank Rakyat","OCBC Bank","HSBC Bank Malaysia"};
+            			  "AmBank", "UOB Bank", "Bank Rakyat","OCBC Bank","HSBC Bank Malaysia"};
 	Scanner scan = new Scanner(System.in);
 	
 	public Participant() { //1.4 Constructor without argument
@@ -36,7 +34,7 @@ public class Participant { //1.3 User Define Class
  		System.out.print("Enter gender(F/M): ");
  		gender= scan.next().charAt(0);
  		System.out.println("\nSelect race: \n1. Chinese \n2. Indian"
- 										+ "\n3. Malay    \n4. Others");
+ 						+ "\n3. Malay   \n4. Others");
  		System.out.print("Enter your race(1/2/3/4): ");
  		race = scan.nextInt();
  		
@@ -58,13 +56,13 @@ public class Participant { //1.3 User Define Class
  		contactNo= scan.nextInt();	
  	}
  	
- 	public Participant(int currentParticipant, int justRegisteredParticipant){  //1.4 Constructor with 2 arguments
+ 	public Participant(int currentParticipant, int justRegisteredParticipant, String participateEvent){  //1.4 Constructor with 3 arguments
  		int calCurrentParticipant= justRegisteredParticipant + currentParticipant; 
  		System.out.println("The Number of Volunteer We Have Now: " +  calCurrentParticipant + " person registered"); 
+ 		System.out.println("\nRegistration for \""+ participateEvent+ "\" Event");
  	}
  	
  	void printInfo() {
- 		System.out.println("Registration for \""+ participate +"\" ");
  		System.out.println("Name      : " + name);
 		System.out.println("Age       : " + age);
 		if(gender == 'F'||gender == 'f')
@@ -93,7 +91,7 @@ public class Participant { //1.3 User Define Class
  	}
  	
  	void calDonationFee() {
- 		System.out.print("Enter donate amount: RM ");
+ 		System.out.print("Enter donate amount: RM/USD ");
 		donateAmount= scan.nextDouble();
 		System.out.println("\nSelect Donate Times: A Give Once  B Monthly");
 		System.out.print("Enter donateTimes(A/B): ");
@@ -106,6 +104,9 @@ public class Participant { //1.3 User Define Class
 		}
 		else
 			donationFee = this.donateAmount;
+		
+		if(haveAcc == false)
+			getDonateMethod();
  	}
  	
  	void getDonateMethod() { //int
@@ -115,20 +116,25 @@ public class Participant { //1.3 User Define Class
 		
 		switch (donateMethod) {
 		case 1: //Cash
-			System.out.println("Total pay for EventFee: RM "+ Math.round(donateAmount));
+			System.out.println();
 			break;
 		case 2: //Credit/Debit
-			System.out.println("Enter First Name: ");
-			System.out.println("Enter Last Name: ");
-			System.out.println("Choose card type: "); //Exp: MasterCard, Visa
+			System.out.println("Enter card type: "); //Exp: MasterCard, Visa
+			cardType = scan.next();
 			System.out.println("Please enter the credit card number: ");
-			System.out.println("Expires: "); //Choose Month & Year
+			creditCardNo = scan.next();
+			System.out.println("Expires: "); //Write Month & Year
+			expires = scan.next();
 			System.out.println("Security Code: ");
-			/*System.out.println("Enter email address: ");
-			System.out.println("Enter cell phone: ");*/
+			securityCode = scan.nextInt();
 			break;
 		case 3: //Account
-			System.out.print("Have an PayPal account? Sign in to give faster.");
+			System.out.println("Have an PayPal account? Sign in to give faster.(true/false) ");
+			haveAcc = scan.nextBoolean();
+			if (haveAcc ==  true) 
+				System.out.println("Yes. Please click to complete donation!");
+			else
+				calDonationFee();
 		    break;
 		case 4: //Online Banking
 			System.out.println("\nBank Name:");
@@ -149,23 +155,23 @@ public class Participant { //1.3 User Define Class
 				tacNo = scan.next(); 
 			}
 			}while(!tacNo.equals("520947"));
-			System.out.println("Congratulation! You have succesfully done the registration!");
 			break;
 		}		
+		System.out.println("Congratulation! You have succesfully done the registration!");
  	}
  	
  	void getDonationFee() { //(double) after calTotalDonationFee(double donateAmount, char donateTimes)
  		if(malaysian == false) //If the participant is Foreigner
  			System.out.println(" ");
  		else 
- 			System.out.println("\nDonation Fee: RM" + df2.format(donationFee));
+ 			System.out.println("\nDonation Fee: RM " + df2.format(donationFee));
  	}
  	
 	void donateChange(){ //double
  		if(malaysian == false){ //If the participant is Foreigner
  			System.out.println("1 USD= RM 4.13"); // USD Dollar > MalaysiaDollar
- 			double donateChange = donateAmount * 4.13; 	
- 			System.out.println(df2.format(donateAmount)+ " USD = Donation Fee: RM " + df2.format(donateChange)); 
+ 			double donateChange = donationFee * 4.13; 	
+ 			System.out.println(df2.format(donationFee)+ " USD = Donation Fee: RM " + df2.format(donateChange)); 
  		}
  	}
 }//end class of Participant
