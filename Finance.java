@@ -14,7 +14,6 @@ public class Finance { //1.3 User Define Class
 	public Finance() {  //1.4 Constructor without argument
 		System.out.println("========Finance========");
 		System.out.println("Sum With Us Income Statement");
-		
 	}
 	
 	public Finance(double sponsorFees) {  //1.4 Constructor with 1 argument
