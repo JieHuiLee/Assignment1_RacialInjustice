@@ -50,5 +50,5 @@ public class Advertisement { //1.3 User Define Class
 		System.out.println("Step 3: Tag 5 friends and invite them join together.");
 		System.out.println("We will welcome to anyone join with us! Let's raise the awareness about racial injustice and prohibit it.");	
  	}
-	
+
 }//end class of Advertisement
