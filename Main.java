@@ -24,8 +24,8 @@ public class Main {
 	 	int optionCode;
 	 	do {
 	 	System.out.println("\nSelect option: \n1. Registration(Participant)"
-	 									  + "\n2. Finance(Admin)"
-	 									  + "\n3. Exit Website");
+	 					  + "\n2. Finance(Admin)"
+	 					  + "\n3. Exit Website");
 	 	System.out.print("\nEnter your option(1/2/3): ");
 	 	optionCode = read.nextInt();
 	 	
