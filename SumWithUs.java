@@ -4,8 +4,8 @@ public class SumWithUs { //Racial Organization Name as superclass //1.3 User Def
 	//1.2 Pre-Define Class 
 	String name;
 	String aboutUs = "\nSum With Us congregations use their financial resources to invest in programs and"
-			       + "\ninitiatives that build better relationship between different race in community and"
-			       + "\nalleviation of discrimination.They help to avoid the perpetuate racial injustice.";
+		       + "\ninitiatives that build better relationship between different race in community and"
+		       + "\nalleviation of discrimination.They help to avoid the perpetuate racial injustice.";
 	String mission;
 	String contactNo;
 	String location;
